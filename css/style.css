@@ -2,7 +2,7 @@
 
 .header {
     height: 80px;
-    background: #2c2d2f;
+    background: rgba(44, 45, 47, 0.46);
     display: flex;
     align-items: center;
     width: 100%;
@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 
 /* LOGOTYPE */

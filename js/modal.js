@@ -3,15 +3,22 @@ const modalTrigger = document.querySelector('#btn-get')
 const closeModalButton = document.querySelector('.modal_close')
 let isModalOpened = false
 
-const openModal = () => {
-    modal.style.display = "block"
-    isModalOpened = true
-
-    window.removeEventListener('scroll', handleScroll)
+const openModal = ()=>{
+    modal.style.display = 'block'
+    document.body.overflow = 'hidden'
 }
 
-const closeModal = () => {
-    modal.classList.add('fadeOut')
+const closeModal = () =>{
+    modal.style.display = 'none'
+    document.body.overflow = ''
+}
+
+modalTrigger.onclick = () => openModal()
+closeModalButton.onclick = () => closeModal()
+modal.onclick = (event) => {
+    if (event.target === modal){
+        closeModal()
+    }
 
     setTimeout(() => {
         modal.style.display = "none"

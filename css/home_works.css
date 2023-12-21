@@ -46,7 +46,7 @@
     height: 400px;
     width: 400px;
     border: 1px solid var(--orange);
-    border-radius: 18px;
+    border-radius: 50%;
 }
 
 .child_block {

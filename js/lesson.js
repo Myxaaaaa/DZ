@@ -139,52 +139,48 @@ validateInput(tenge)
 
 
 const card = document.querySelector('.card')
-const prevButton = document.getElementById('btn-prev')
-const nextButton = document.getElementById('btn-next')
+const btnNext = document.querySelector('#btn-next')
+const btnPrev = document.querySelector('#btn-prev')
 
-let currentCardIndex = 0
-let autoSlideInterval
+let countCard = 1
 
-const loremTexts = [
-    'Здравствуйте Нурдин!',
-    'Обратите внимание',
-    'На то что я добавил еще и валидацию)',
-    'Теперь нельзя ввести буквы в конвертор, вы этого не просили, но я все же подумал, почему бы и не добавить её'
-]
-
-const generateLorem = () => {
-    const currentContent = loremTexts[currentCardIndex]
-    currentCardIndex = (currentCardIndex + 1) % loremTexts.length
-    return currentContent
+const loadData = () => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${countCard}`)
+        .then(response => response.json())
+        .then((data) => {
+            card.innerHTML = `
+                <p>${data.title}</p>
+                <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+                <span>${data.id}</span>
+            `
+        })
 }
 
-const updateCard = () => {
-    const newContent = document.createElement('p')
-    newContent.textContent = generateLorem()
-    card.innerHTML = ''
-    card.appendChild(newContent)
+const handleNext = () => {
+    countCard = (countCard === 200) ? 1 : countCard + 1
+    loadData()
 }
 
-const autoSlide = () => {
-    autoSlideInterval = setInterval(() => {
-        updateCard()
-    }, 2000)
+const handlePrev = () => {
+    countCard = (countCard === 1) ? 200 : countCard - 1
+    loadData()
 }
 
-prevButton.addEventListener('click', () => {
-    clearInterval(autoSlideInterval)
-    currentCardIndex = (currentCardIndex - 2 + loremTexts.length) % loremTexts.length
-    updateCard()
+btnNext.addEventListener('click', handleNext)
+btnPrev.addEventListener('click', handlePrev)
+
+loadData()
+
+//fetch 2
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then( dataJson => {
+        console.log("loading,please wait...")
+        setTimeout(()=>{
+            console.log(dataJson)
+        },2000)
+    })
+.catch(error =>{
+    console.error('Ошибка при получении запроса')
 })
-
-nextButton.addEventListener('click', () => {
-    clearInterval(autoSlideInterval)
-    updateCard()
-})
-
-updateCard()
-autoSlide()
-
-
-
-

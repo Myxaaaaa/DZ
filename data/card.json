@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Nurdin",
+    "surname": "Kubatbekov",
+    "age": 20,
+    "photo": "images/nurdin.jpg"
+  },
+  {
+    "name": "Temirlan",
+    "surname": "Soltonkulov",
+    "age": 18,
+    "photo": "images/temirlan.jpg"
+  },
+  {
+    "name": "Ahmad",
+    "surname": "Hamdamov",
+    "age": 20,
+    "photo": "images/ahmad.jpg"
+  },
+  {
+    "name": "Milana",
+    "surname": "Kurmanalieva",
+    "age": 16,
+    "photo": "images/milana.jpg"
+  },
+  {
+    "name": "Nurjigit",
+    "surname": "Kydyrmrshov",
+    "age": 17,
+    "photo": "images/nurjigit.jpg"
+  },
+  {
+    "name": "Dastan",
+    "surname": "Murataliev",
+    "age": 20,
+    "photo": "images/dastan.jpg"
+  },
+  {
+    "name": "Nur-mukhammed",
+    "surname": "Dunlazov",
+    "age": 17,
+    "photo": "images/myxa.gif"
+  }
+]

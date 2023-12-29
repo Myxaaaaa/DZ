@@ -50,6 +50,7 @@
 
 .menu_link a:hover {
     text-decoration: underline;
+    transform: scale(1.1);
 }
 
 /* MAIN BLOCK */
@@ -248,7 +249,7 @@
     border: 8px solid transparent;
     animation: animate 5s linear infinite;
     transform-origin: bottom center;
-    animation-play-state: run;
+    animation-play-state: running;
 }
 
 @keyframes animate {

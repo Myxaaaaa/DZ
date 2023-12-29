@@ -5,13 +5,13 @@ const phoneButton = document.querySelector('#phone_button')
 const regExp = /^\+996 [25793]\d{2} \d{2}-\d{2}-\d{2}$/
 
 phoneButton.onclick = () => {
-   if (regExp.test(phoneInput.value)) {
-       phoneResult.innerHTML = 'OK'
-       phoneResult.style.color = 'green'
-   }else {
-       phoneResult.innerHTML = 'NOT OK'
-       phoneResult.style.color = 'red'
-   }
+    if (regExp.test(phoneInput.value)) {
+        phoneResult.innerHTML = 'OK'
+        phoneResult.style.color = 'green'
+    } else {
+        phoneResult.innerHTML = 'NOT OK'
+        phoneResult.style.color = 'red'
+    }
 }
 
 const tabContentBlocks = document.querySelectorAll('.tab_content_block')
@@ -61,21 +61,16 @@ hideTabContent()
 showTabContent(slideIndex)
 startSlider()
 
-//CONVERTER
-
 const som = document.querySelector('#som')
 const usd = document.querySelector('#usd')
 const eur = document.querySelector('#eur')
 const tenge = document.querySelector('#tenge')
 
-const converter = (element, targetElement, current) => {
-    element.oninput = () => {
-        const xhr = new XMLHttpRequest()
-        xhr.open('GET', '../data/converter.json')
-        xhr.setRequestHeader('Content-type', 'application/json')
-        xhr.send()
-        xhr.onload = () =>{
-            const data = JSON.parse(xhr.response)
+const converter = async (element, targetElement, current) => {
+    element.oninput = async () => {
+        try {
+            const response = await fetch('../data/converter.json')
+            const data = await response.json()
 
             const inputValue = parseFloat(element.value)
 
@@ -110,6 +105,8 @@ const converter = (element, targetElement, current) => {
                 eur.value = ''
                 tenge.value = ''
             }
+        } catch (error) {
+            console.error(error)
         }
     }
 }
@@ -135,25 +132,25 @@ validateInput(usd)
 validateInput(eur)
 validateInput(tenge)
 
-//cardSwitcher
-
-
 const card = document.querySelector('.card')
 const btnNext = document.querySelector('#btn-next')
 const btnPrev = document.querySelector('#btn-prev')
 
 let countCard = 1
 
-const loadData = () => {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${countCard}`)
-        .then(response => response.json())
-        .then((data) => {
-            card.innerHTML = `
-                <p>${data.title}</p>
-                <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
-                <span>${data.id}</span>
-            `
-        })
+const loadData = async () => {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${countCard}`)
+        const data = await response.json()
+
+        card.innerHTML = `
+            <p>${data.title}</p>
+            <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+            <span>${data.id}</span>
+        `
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 const handleNext = () => {
@@ -171,16 +168,15 @@ btnPrev.addEventListener('click', handlePrev)
 
 loadData()
 
-//fetch 2
+const URL = 'https://jsonplaceholder.typicode.com/posts'
+const fetchSwitcher = async () => {
+    try {
+        const switcher = await fetch(URL)
+        const card = await switcher.json()
+        console.log(card)
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then( dataJson => {
-        console.log("loading,please wait...")
-        setTimeout(()=>{
-            console.log(dataJson)
-        },2000)
-    })
-.catch(error =>{
-    console.error('Ошибка при получении запроса')
-})
+fetchSwitcher()

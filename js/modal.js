@@ -35,30 +35,30 @@ modal.onclick = (event) => {
     }, 300)
 }
 
-const handleScroll = () => {
-    if (!isModalOpened && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        openModal()
-        window.removeEventListener('scroll', handleScroll)
-    }
-}
+// const handleScroll = () => {
+//     if (!isModalOpened && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+//         openModal()
+//         window.removeEventListener('scroll', handleScroll)
+//     }
+// }
 
-const showModalAfterDelay = () => {
-    setTimeout(() => {
-        openModal()
-        window.removeEventListener('scroll', handleScroll)
-    }, 10000)
-}
-
-modalTrigger.addEventListener('click', () => {
-    openModal()
-    window.removeEventListener('scroll', handleScroll)
-})
-
-closeModalButton.addEventListener('click', () => {
-    closeModal()
-    isModalOpened = false
-})
-
-window.addEventListener('scroll', handleScroll)
-
-showModalAfterDelay()
+// const showModalAfterDelay = () => {
+//     setTimeout(() => {
+//         openModal()
+//         window.removeEventListener('scroll', handleScroll)
+//     }, 10000)
+// }
+//
+// modalTrigger.addEventListener('click', () => {
+//     openModal()
+//     window.removeEventListener('scroll', handleScroll)
+// })
+//
+// closeModalButton.addEventListener('click', () => {
+//     closeModal()
+//     isModalOpened = false
+// })
+//
+// window.addEventListener('scroll', handleScroll)
+//
+// showModalAfterDelay()

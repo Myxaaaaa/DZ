@@ -27,8 +27,16 @@ body {
     padding: 15px;
     border: 1px solid rgba(255, 106, 0, 0.78);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgb(255, 0, 0);
     background-color: rgba(0, 0, 0, 0.7);
+    transition: .8s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    background: linear-gradient(#737373, #dcdbdb, #737373);
+    box-shadow: 0 4px 8px #dcdbdb;
+    border: 5px solid #fd0606;
 }
 
 .card img {
@@ -40,6 +48,7 @@ body {
 .card h3 {
     margin-top: 0;
     font-size: 18px;
+    color: #555555;
 }
 
 .card p {
